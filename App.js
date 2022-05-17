@@ -4,6 +4,7 @@ import { Provider } from "react-redux";
 import AppLoading from "expo-app-loading";
 import React, { useState } from "react";
 import * as Font from "expo-font";
+import ordersReducer from "./store/reducers/order";
 
 import productReducer from "./store/reducers/products";
 import {
@@ -19,6 +20,7 @@ const store = configureStore({
   reducer: {
     products: productReducer,
     cart: cartReducer,
+    orders: ordersReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
