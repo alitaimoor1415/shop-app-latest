@@ -12,6 +12,7 @@ import OrderScreen from "../screens/shop/OrdersScreen";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import Order from "../models/order";
 import { Ionicons } from "@expo/vector-icons";
+import UserProductsScreen from "../screens/user/UserProductScreen";
 const productsNavigator = createNativeStackNavigator();
 
 const MainNavigator = () => {
@@ -103,6 +104,35 @@ const GetOrderNavigator = () => {
     </ordersNavigator.Navigator>
   );
 };
+
+const adminNavigator = createNativeStackNavigator();
+const GetAdminNavigator = () => {
+  return (
+    <adminNavigator.Navigator
+      initialRouteName="Overview"
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: Platform.OS === "android" ? Colors.primary : "",
+        },
+
+        headerTintColor: Platform.OS === "android" ? "white" : Colors.primary,
+      }}
+    >
+      <adminNavigator.Screen
+        name="UserProducts"
+        component={UserProductsScreen}
+        options={({ route }) => {
+          // const title = route.params.productTitle;
+          // console.log(title);
+          return {
+            title: "Your Products",
+            // headerBackTitle: title,
+          };
+        }}
+      />
+    </adminNavigator.Navigator>
+  );
+};
 const shopNavigator = createDrawerNavigator();
 const MainNavigatorDrawer = () => {
   return (
@@ -136,6 +166,19 @@ const MainNavigatorDrawer = () => {
             drawerIcon: ({ focused }) => (
               <Ionicons
                 name={Platform.OS === "android" ? "md-list" : "ios-list"}
+                size={23}
+                color={focused.tintColor}
+              />
+            ),
+          }}
+        />
+        <shopNavigator.Screen
+          name="Admin"
+          component={GetAdminNavigator}
+          options={{
+            drawerIcon: ({ focused }) => (
+              <Ionicons
+                name={Platform.OS === "android" ? "md-create" : "ios-create"}
                 size={23}
                 color={focused.tintColor}
               />
