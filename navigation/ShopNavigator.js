@@ -13,6 +13,7 @@ import { createDrawerNavigator } from "@react-navigation/drawer";
 import Order from "../models/order";
 import { Ionicons } from "@expo/vector-icons";
 import UserProductsScreen from "../screens/user/UserProductScreen";
+import EdiProductScreen from "../screens/user/EditProductScreen";
 const productsNavigator = createNativeStackNavigator();
 
 const MainNavigator = () => {
@@ -121,11 +122,36 @@ const GetAdminNavigator = () => {
       <adminNavigator.Screen
         name="UserProducts"
         component={UserProductsScreen}
-        options={({ route }) => {
+        options={({ navigation, route }) => {
           // const title = route.params.productTitle;
           // console.log(title);
           return {
             title: "Your Products",
+            headerRight: () => (
+              <HeaderButtons HeaderButtonComponent={HeaderButton}>
+                <Item
+                  title="Favorite"
+                  iconName={
+                    Platform.OS === "android" ? "md-create" : "ios-create"
+                  }
+                  onPress={() => {
+                    navigation.navigate("EditProducts");
+                  }}
+                />
+              </HeaderButtons>
+            ),
+            // headerBackTitle: title,
+          };
+        }}
+      />
+      <adminNavigator.Screen
+        name="EditProducts"
+        component={EdiProductScreen}
+        options={({ route }) => {
+          // const title = route.params.productTitle;
+          // console.log(title);
+          return {
+            title: "Edit Products",
             // headerBackTitle: title,
           };
         }}

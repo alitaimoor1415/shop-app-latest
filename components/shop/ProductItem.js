@@ -66,22 +66,22 @@ const styles = StyleSheet.create({
   },
   details: {
     alignItems: "center",
-    height: "15%",
+    height: "17%",
     padding: 10,
   },
   title: {
-    fontSize: 14,
+    fontSize: 16,
     marginVertical: 4,
   },
   price: {
-    fontSize: 14,
+    fontSize: 16,
     color: "#888",
   },
   action: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    height: "25%",
+    height: "23%",
     paddingHorizontal: 20,
   },
 });
