@@ -148,10 +148,26 @@ const GetAdminNavigator = () => {
         name="EditProducts"
         component={EdiProductScreen}
         options={({ route }) => {
+          // console.log(route.params);
           // const title = route.params.productTitle;
           // console.log(title);
+          const submitFn = route.params.submit;
           return {
-            title: "Edit Products",
+            title: route.params ? "Edit Product" : "Add Product",
+            headerRight: () => (
+              <HeaderButtons HeaderButtonComponent={HeaderButton}>
+                <Item
+                  title="Save"
+                  iconName={
+                    Platform.OS === "android" ? "md-checkmark" : "ios-checkmark"
+                  }
+                  onPress={() => {
+                    // navigation.navigate("EditProducts");
+                    submitFn
+                  }}
+                />
+              </HeaderButtons>
+            ),
             // headerBackTitle: title,
           };
         }}
